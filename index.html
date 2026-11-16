@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clipboard Test</title>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+}
+.container {
+    text-align: center;
+    padding: 25px;
+}
+button {
+    background: #2563eb;
+    color: white;
+    border: 0;
+    padding: 14px 30px;
+    border-radius: 10px;
+    font-size: 17px;
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Clipboard Test</h2>
+    <p id="status">جارٍ اختبار النسخ...</p>
+    <button id="copy">نسخ النص</button>
+</div>
+
+<script>
+const text = "Please subscribe to MrLimbo";
+
+window.addEventListener("load", async () => {
+    try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById("status").textContent =
+            "تم النسخ بنجاح";
+    } catch (error) {
+        document.getElementById("status").textContent =
+            "اضغط على الزر لنسخ النص";
+        document.getElementById("copy").style.display = "inline-block";
+    }
+});
+
+document.getElementById("copy").onclick = async () => {
+    try {
+        await navigator.clipboard.writeText(text);
+        document.getElementById("status").textContent =
+            "تم النسخ بنجاح";
+    } catch (error) {
+        document.getElementById("status").textContent =
+            "تعذر النسخ";
+    }
+};
+</script>
+
+</body>
+</html>
